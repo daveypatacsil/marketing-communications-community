@@ -363,80 +363,143 @@
     .exp-item { grid-template-columns: 1fr; gap: 16px; }
   }
 
-  /* =========================================================
-     PROJECT CARDS  (the "AI work" grid)
-     ========================================================= */
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 20px;
-  }
-  .card {
-    background: var(--bg-elev);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 30px 28px 28px;
-    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .card:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent);
-    box-shadow: 0 12px 30px -16px rgba(26,29,34,0.18);
-  }
-  .card-icon {
-    font-size: 30px;
-    line-height: 1;
-    margin-bottom: 22px;
-    display: inline-block;
-  }
-  .card-title {
-    font-family: var(--serif);
-    font-size: 22px;
-    margin: 0 0 12px;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-  }
-  .card-body {
-    font-size: 15px;
-    color: var(--ink-soft);
-    margin: 0 0 22px;
-    line-height: 1.55;
-  }
-  .card-tag {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-  }
+ /* =========================================================
+   PROJECT CARDS  (the "AI work" grid)
+   ========================================================= */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 30px 28px 28px;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px -16px rgba(26,29,34,0.18);
+}
+.card-icon {
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 22px;
+  display: inline-block;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  margin: 0 0 12px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.card-body {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+  line-height: 1.55;
+}
+.card-tag {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
 
-  .built-with {
-    margin-top: 56px;
-    padding-top: 32px;
-    border-top: 1px solid var(--rule);
-    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px;
-    font-size: 13px;
-    color: var(--ink-faint);
-  }
-  .built-with span:first-child {
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-right: 6px;
-  }
-  .built-with .chip {
-    color: var(--ink);
-    font-weight: 500;
-  }
-  .built-with .chip + .chip::before {
-    content: "·";
-    color: var(--ink-faint);
-    margin-right: 16px;
-    margin-left: -2px;
-  }
+/* ---------- Card link wrapper (keeps card styling intact) ---------- */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
 
+/* ---------- LIVE project variant ---------- */
+.card-live {
+  border-color: rgba(72, 187, 120, 0.45);
+  box-shadow: 0 0 12px rgba(72, 187, 120, 0.22),
+              0 0 24px rgba(72, 187, 120, 0.10);
+  animation: card-live-pulse 2.8s ease-in-out infinite;
+}
+.card-link:hover .card-live,
+.card-live:hover {
+  border-color: rgba(72, 187, 120, 0.65);
+  box-shadow: 0 12px 30px -16px rgba(26,29,34,0.18),
+              0 0 18px rgba(72, 187, 120, 0.40),
+              0 0 36px rgba(72, 187, 120, 0.18);
+}
+
+@keyframes card-live-pulse {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(72, 187, 120, 0.22),
+                0 0 24px rgba(72, 187, 120, 0.10);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(72, 187, 120, 0.38),
+                0 0 32px rgba(72, 187, 120, 0.18);
+  }
+}
+
+.live-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(72, 187, 120, 0.12);
+  color: #2f9e5f;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(72, 187, 120, 0.45);
+}
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2f9e5f;
+  box-shadow: 0 0 6px rgba(72, 187, 120, 0.8);
+  animation: live-blink 1.5s ease-in-out infinite;
+}
+@keyframes live-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* ---------- built-with row (unchanged) ---------- */
+.built-with {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.built-with span:first-child {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-right: 6px;
+}
+.built-with .chip {
+  color: var(--ink);
+  font-weight: 500;
+}
+.built-with .chip + .chip::before {
+  content: "·";
+  color: var(--ink-faint);
+  margin-right: 16px;
+  margin-left: -2px;
+}
   /* =========================================================
      SKILLS GROUPS
      ========================================================= */
