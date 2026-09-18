@@ -411,8 +411,8 @@
   .writing-cta { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; }
   .writing-item:hover .writing-cta { color: var(--accent); }
 
-  /* ── REFERENCES ── */
-  .refs-list { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  /* ── TESTIMONIALS ── */
+  .testimonials-list, .refs-list { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
   .ref-card { padding: 32px 0 0; border-top: 1.5px solid var(--rule-strong); }
   .ref-quote {
     font-family: var(--display); font-style: italic;
@@ -422,10 +422,6 @@
   .ref-quote::after { content: '\201D'; }
   .ref-person { font-size: 13px; font-weight: 500; letter-spacing: 0.03em; }
   .ref-title { font-size: 12px; color: var(--ink-faint); margin-top: 4px; }
-  .ref-card.pending { opacity: .62; }
-  .ref-card.pending .ref-quote { font-style: normal; font-family: var(--sans); font-size: 14px; color: var(--ink-muted); }
-  .ref-card.pending .ref-quote::before,
-  .ref-card.pending .ref-quote::after { content: ''; }
 
   /* ── CONTACT ── */
   #contact {
@@ -470,7 +466,7 @@
     .stat-num { font-size: 27px; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .about-portrait::after { display: none; }
-    .refs-list { grid-template-columns: 1fr; gap: 28px; }
+    .refs-list, .testimonials-list { grid-template-columns: 1fr; gap: 28px; }
     #contact { grid-template-columns: 1fr; gap: 40px; padding: 72px 6vw; }
     section { padding: 72px 6vw; }
     .writing-item { grid-template-columns: 1fr; gap: 8px; }
@@ -490,7 +486,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#writing">Writing</a></li>
-      <li><a href="#references">References</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="Davey-Patacsil-Resume.pdf" class="nav-resume">Resume &darr;</a></li>
     </ul>
@@ -723,24 +719,30 @@
   </div>
 </section>
 
-<!-- ── 04 REFERENCES ──
-     Your cover letter lists three referees, but with phone numbers and no quotes.
-     Never publish a referee's phone number. Ask each of them for two or three
-     sentences and explicit permission to put it on a public page, then replace
-     a card below. Delete this section entirely until at least two are real. -->
-<section id="references">
-  <div class="section-header"><span class="section-num">04</span><h2>References</h2></div>
+<!-- ── 04 TESTIMONIALS ── -->
+<section id="testimonials">
+  <div class="section-header"><span class="section-num">04</span><h2>Testimonials</h2></div>
   <p class="section-lead">What people who've managed and worked alongside me say about the work.</p>
   <div class="refs-list">
-    <div class="ref-card pending">
-      <p class="ref-quote">Placeholder — ask a former manager at Intuit for two or three sentences about how you run a program end to end, and their permission to publish it.</p>
-      <div class="ref-person">Name</div>
-      <div class="ref-title">Title — Company</div>
+    <div class="ref-card">
+      <p class="ref-quote">You didn’t just support the event, you elevated it. We’re lucky to have your dedication in building inclusive, vibrant tech communities and showcasing what Intuit Tech is all about.</p>
+      <div class="ref-person">Director of DevRel</div>
+      <div class="ref-title">Intuit</div>
     </div>
-    <div class="ref-card pending">
-      <p class="ref-quote">Placeholder — your Comic-Con advancement contact is well placed to speak to building the membership program from nothing and to handling donor data with discretion.</p>
-      <div class="ref-person">Name</div>
-      <div class="ref-title">Title — Company</div>
+    <div class="ref-card">
+      <p class="ref-quote">Thank you for quickly coming up with a strategy and driving the newsletter to the first issue. Gathering feedback from so many stakeholders was quite stressful, and you did a great job at making sure everyone felt heard.</p>
+      <div class="ref-person">Direct Manager, Tech PMM & Advocacy</div>
+      <div class="ref-title">Intuit</div>
+    </div>
+    <div class="ref-card">
+      <p class="ref-quote">Your posts, coverage, and real-time updates helped extend the impact of the event far beyond the people physically on-site. I really appreciate all the creativity and effort you put into this.</p>
+      <div class="ref-person">Staff Technical Program Manager</div>
+      <div class="ref-title">Intuit</div>
+    </div>
+    <div class="ref-card">
+      <p class="ref-quote">I appreciate all the hard work, diligence, and commitment to ensure the newsletters have the reach and impact they deserve.</p>
+      <div class="ref-person">AI Foundations Initative Managerr</div>
+      <div class="ref-title">Intuit</div>
     </div>
   </div>
 </section>
