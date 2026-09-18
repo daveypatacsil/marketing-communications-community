@@ -624,14 +624,73 @@
       </a>
     </article>
 
-    <!-- COMMS OPS -->
+   <!-- COMMS OPS -->
     <article class="work-card">
-      <div class="card-media">
-        <div class="media-placeholder" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-8"/><path d="M3 21h18"/></svg>
-          <span>Add a dashboard screenshot</span>
-        </div>
-        <img src="images/comms-ops.jpg" alt="Automated reporting dashboard" loading="lazy" decoding="async" onerror="this.style.display='none'">
+      <!-- A diagram rather than a screenshot: a dashboard thumbnail at this size
+           is unreadable chart-shapes, and a real one would need redacting. This
+           shows what actually changed. It inherits the page colours, so it
+           themes itself and never needs re-exporting. -->
+      <div class="card-media has-image">
+        <figure style="margin:0; width:100%;">
+          <svg viewBox="0 0 400 250" width="400" height="250" role="img"
+               aria-label="Before: raw data passes through manual cleanup into a status deck, and reporting lands about a week behind. Now: the same raw data passes through an automated pipeline into a live dashboard, and reporting lands the same day."
+               font-family="DM Sans, system-ui, sans-serif">
+
+            <!-- ── BEFORE lane ── -->
+            <text x="14" y="24" font-size="9" letter-spacing="1.6" style="fill:currentColor" opacity=".45">BEFORE</text>
+
+            <g style="stroke:currentColor; fill:none" opacity=".45" stroke-width="1">
+              <rect x="14"  y="34" width="108" height="40" rx="3"/>
+              <rect x="146" y="34" width="108" height="40" rx="3" stroke-dasharray="4 3"/>
+              <rect x="278" y="34" width="108" height="40" rx="3"/>
+              <path d="M124 54 h18" marker-end="url(#ar-dim)"/>
+              <path d="M256 54 h18" marker-end="url(#ar-dim)"/>
+            </g>
+            <g text-anchor="middle" font-size="11" style="fill:currentColor" opacity=".72">
+              <text x="68"  y="58">Raw data</text>
+              <text x="200" y="58" font-size="10">Manual cleanup</text>
+              <text x="332" y="58">Status deck</text>
+            </g>
+            <text x="200" y="88" text-anchor="middle" font-size="8.5" letter-spacing="1.1"
+                  style="fill:currentColor" opacity=".45">BY HAND, WEEKLY</text>
+            <text x="14" y="106" font-size="10" style="fill:currentColor" opacity=".55">
+              Reporting lands about a week behind the work.
+            </text>
+
+            <line x1="14" y1="124" x2="386" y2="124" style="stroke:currentColor" opacity=".13"/>
+
+            <!-- ── NOW lane ── -->
+            <text x="14" y="148" font-size="9" letter-spacing="1.6" style="fill:var(--accent)">NOW</text>
+
+            <g style="stroke:var(--accent); fill:none" stroke-width="1.4">
+              <rect x="14"  y="158" width="108" height="40" rx="3"/>
+              <rect x="146" y="158" width="108" height="40" rx="3" style="stroke:var(--highlight); fill:var(--accent-soft)"/>
+              <rect x="278" y="158" width="108" height="40" rx="3"/>
+              <path d="M124 178 h18" marker-end="url(#ar-on)"/>
+              <path d="M256 178 h18" marker-end="url(#ar-on)"/>
+            </g>
+            <g text-anchor="middle" font-size="11" style="fill:currentColor">
+              <text x="68"  y="182">Raw data</text>
+              <text x="200" y="182" font-size="10">Automated pipeline</text>
+              <text x="332" y="182">Live dashboard</text>
+            </g>
+            <text x="200" y="212" text-anchor="middle" font-size="8.5" letter-spacing="1.1"
+                  style="fill:var(--highlight)">NIGHTLY, UNATTENDED</text>
+            <text x="14" y="230" font-size="10" style="fill:var(--accent)">
+              Reporting lands the same day.
+            </text>
+
+            <defs>
+              <marker id="ar-dim" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+                <polygon points="0,1 8,4 0,7" style="fill:currentColor" opacity=".45"/>
+              </marker>
+              <marker id="ar-on" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+                <polygon points="0,1 8,4 0,7" style="fill:var(--accent)"/>
+              </marker>
+            </defs>
+          </svg>
+          <figcaption class="sr-only">The manual assembly step between data and report was removed, moving reporting from weekly to same-day.</figcaption>
+        </figure>
       </div>
       <div class="card-body">
         <div class="work-card-meta"><span class="work-tag">Process Design</span><span class="work-date">Intuit</span></div>
