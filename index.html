@@ -8,7 +8,7 @@
 
 <link rel="canonical" href="https://daveypatacsil.github.io/marketing-communications-community/">
 <meta name="author" content="Davey Patacsil">
-<meta name="theme-color" content="#FAF8F5" id="theme-color-meta">
+<meta name="theme-color" content="#FCFDFF" id="theme-color-meta">
 
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Davey Patacsil — Program Management, Communications &amp; Operations">
@@ -56,25 +56,29 @@
 <style>
   /* =========================================================
      TOKENS
-     The palette is warm off-white + ink + a burnt-amber accent —
-     the amber that was already sitting unused in your original
-     stylesheet, finally given something to do.
+     Cool white + slate greys + a primary blue, with violet reserved
+     for small accents: eyebrows, tags, the card hover edge. Two accents
+     only, and the violet never carries body text.
      ========================================================= */
   :root {
     color-scheme: light;
-    --cream:       #F2EDE6;
-    --warm-white:  #FAF8F5;
-    --ink:         #0E0D0C;
-    --ink-muted:   #4A4540;
-    --ink-faint:   #736A62;   /* darkened from the reference so it passes AA */
-    --accent:      #B4551F;
-    --accent-soft: #F3E4DA;
-    --media-bg:    #E8DED4;
-    --border:      rgba(14,13,12,0.10);
-    --rule-strong: rgba(14,13,12,0.85);
-    --on-ink:      #FAF8F5;
+    --cream:       #F1F5FA;   /* cool grey-blue band */
+    --warm-white:  #FCFDFF;   /* page white, a hair cooler than pure */
+    --ink:         #0F172A;   /* near-black with blue in it */
+    --ink-muted:   #475569;
+    --ink-faint:   #5B6B80;   /* AA on white, the band, and the media plate */
+    --accent:      #1D4ED8;   /* primary blue */
+    --highlight:   #7C3AED;   /* violet — used sparingly, for accents only */
+    --accent-soft: #F5F3FF;   /* violet tint for hover rows */
+    --on-accent:   #FFFFFF;
+    --media-bg:    #EAF0F8;
+    --border:      rgba(15,23,42,0.10);
+    --rule-strong: rgba(15,23,42,0.85);
+    --on-ink:      #FFFFFF;
+    --footer-bg:   #0F172A;
+    --footer-ink:  rgba(255,255,255,0.50);
     --img-filter:  none;
-    --nav-bg:      rgba(250,248,245,0.93);
+    --nav-bg:      rgba(252,253,255,0.93);
     --nav-h:       72px;
     --display: 'Fraunces', Georgia, 'Times New Roman', serif;
     --sans:    'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -83,36 +87,44 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       color-scheme: dark;
-      --cream:       #161513;
-      --warm-white:  #0E0D0C;
-      --ink:         #F4F1EC;
-      --ink-muted:   #B0A89F;
-      --ink-faint:   #8C837A;
-      --accent:      #E08A50;
-      --accent-soft: #2A1C13;
-      --media-bg:    #22201D;
-      --border:      rgba(244,241,236,0.14);
-      --rule-strong: rgba(244,241,236,0.85);
-      --on-ink:      #0E0D0C;
+      --cream:       #111C2E;
+      --warm-white:  #0B1220;
+      --ink:         #E8EEF7;
+      --ink-muted:   #A3B4CC;
+      --ink-faint:   #8598B3;
+      --accent:      #7FA9FF;
+      --highlight:   #B79CFF;
+      --accent-soft: #1B1733;
+      --on-accent:   #0B1220;
+      --media-bg:    #16213A;
+      --border:      rgba(232,238,247,0.14);
+      --rule-strong: rgba(232,238,247,0.85);
+      --on-ink:      #0B1220;
+      --footer-bg:   #060C17;
+      --footer-ink:  rgba(232,238,247,0.45);
       --img-filter:  brightness(.88) contrast(1.02);
-      --nav-bg:      rgba(14,13,12,0.93);
+      --nav-bg:      rgba(11,18,32,0.93);
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --cream:       #161513;
-    --warm-white:  #0E0D0C;
-    --ink:         #F4F1EC;
-    --ink-muted:   #B0A89F;
-    --ink-faint:   #8C837A;
-    --accent:      #E08A50;
-    --accent-soft: #2A1C13;
-    --media-bg:    #22201D;
-    --border:      rgba(244,241,236,0.14);
-    --rule-strong: rgba(244,241,236,0.85);
-    --on-ink:      #0E0D0C;
+    --cream:       #111C2E;
+    --warm-white:  #0B1220;
+    --ink:         #E8EEF7;
+    --ink-muted:   #A3B4CC;
+    --ink-faint:   #8598B3;
+    --accent:      #7FA9FF;
+    --highlight:   #B79CFF;
+    --accent-soft: #1B1733;
+    --on-accent:   #0B1220;
+    --media-bg:    #16213A;
+    --border:      rgba(232,238,247,0.14);
+    --rule-strong: rgba(232,238,247,0.85);
+    --on-ink:      #0B1220;
+    --footer-bg:   #060C17;
+    --footer-ink:  rgba(232,238,247,0.45);
     --img-filter:  brightness(.88) contrast(1.02);
-    --nav-bg:      rgba(14,13,12,0.93);
+    --nav-bg:      rgba(11,18,32,0.93);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -169,7 +181,7 @@
     transition: color .2s; white-space: nowrap;
   }
   .nav-links a:hover { color: var(--accent); }
-  .nav-resume { color: var(--accent) !important; }
+  .nav-resume { color: var(--highlight) !important; }
 
   .theme-toggle {
     flex: none;
@@ -206,10 +218,10 @@
 
   .hero-eyebrow {
     font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 24px;
+    color: var(--highlight); margin-bottom: 24px;
     display: flex; align-items: flex-start; gap: 12px;
   }
-  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); flex: none; margin-top: 8px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--highlight); flex: none; margin-top: 8px; }
 
   h1 {
     font-family: var(--display);
@@ -234,7 +246,7 @@
     transition: background .2s, transform .15s, border-color .2s, color .2s;
   }
   .btn-primary { background: var(--ink); color: var(--on-ink); }
-  .btn-primary:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--accent); color: var(--on-accent); transform: translateY(-1px); }
   .btn-ghost { border: 1px solid var(--border); color: var(--ink-muted); padding: 13px 28px; }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -250,11 +262,11 @@
     position: absolute; inset: 0;
     background-image: url('images/stphoto.JPG');
     background-size: cover; background-position: center 35%;
-    filter: brightness(0.42) saturate(0.7);
+    filter: brightness(0.40) saturate(0.55) hue-rotate(-8deg);
   }
   .hero-gradient {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(14,13,12,0.88) 0%, rgba(14,13,12,0.08) 58%, transparent 100%);
+    background: linear-gradient(to top, rgba(10,17,32,0.90) 0%, rgba(10,17,32,0.10) 58%, transparent 100%);
   }
   .hero-stats { position: relative; width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
   .stat-block {
@@ -284,7 +296,7 @@
   .about-portrait img { width: 100%; height: auto; filter: var(--img-filter); }
   .about-portrait::after {
     content: ''; position: absolute; bottom: -16px; right: -16px;
-    width: 60%; height: 60%; border: 1.5px solid var(--accent); z-index: -1;
+    width: 60%; height: 60%; border: 1.5px solid var(--highlight); z-index: -1;
   }
   .about-text p { color: var(--ink-muted); margin-bottom: 24px; font-size: 17px; line-height: 1.75; }
   .about-text strong { color: var(--ink); font-weight: 500; }
@@ -308,7 +320,7 @@
   .band .work-card { background: var(--cream); }
   .work-card::before {
     content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-    width: 3px; background: var(--accent);
+    width: 3px; background: var(--highlight);
     transform: scaleY(0); transform-origin: bottom;
     transition: transform .25s ease; z-index: 3;
   }
@@ -346,7 +358,7 @@
 
   .card-body { padding: 28px 28px 26px; flex: 1; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
   .work-card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
-  .work-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+  .work-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--highlight); font-weight: 500; }
   .work-date { font-size: 11px; color: var(--ink-faint); }
   .work-card h3 { font-family: var(--display); font-size: 21px; font-weight: 600; line-height: 1.25; margin-bottom: 12px; }
   .work-card p { font-size: 14px; color: var(--ink-muted); line-height: 1.65; }
@@ -367,11 +379,11 @@
   .live-flag {
     position: absolute; top: 12px; right: 12px; z-index: 2;
     display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(14,13,12,0.72); color: #fff;
+    background: rgba(10,17,32,0.80); color: #fff;
     font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
     padding: 5px 10px;
   }
-  .live-dot { width: 5px; height: 5px; border-radius: 50%; background: #6ED79B; animation: blink 1.6s ease-in-out infinite; }
+  .live-dot { width: 5px; height: 5px; border-radius: 50%; background: #34D399; animation: blink 1.6s ease-in-out infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
 
   /* Featured card: pillars + flow */
@@ -393,7 +405,7 @@
     text-decoration: none; color: inherit; transition: background .2s;
   }
   .writing-item:hover { background: var(--accent-soft); }
-  .writing-kind { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+  .writing-kind { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--highlight); font-weight: 500; }
   .writing-title { font-family: var(--display); font-size: 19px; font-weight: 600; display: block; margin-bottom: 6px; }
   .writing-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.6; max-width: 64ch; }
   .writing-cta { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; }
@@ -439,7 +451,7 @@
 
   /* ── FOOTER ── */
   footer {
-    background: var(--ink); color: rgba(250,248,245,0.4);
+    background: var(--footer-bg); color: var(--footer-ink);
     padding: 24px 8vw; font-size: 12px;
     display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
   }
@@ -747,7 +759,7 @@
     <div class="contact-links">
       <a href="https://linkedin.com/in/davey-patacsil" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
       <a href="#work" class="contact-link">Work</a>
-      <a href="Davey-Patacsil-Resume.pdf" class="contact-link" style="color:var(--accent)">Download Resume &darr;</a>
+      <a href="Davey-Patacsil-Resume.pdf" class="contact-link" style="color:var(--highlight)">Download Resume &darr;</a>
     </div>
   </div>
 </section>
@@ -801,7 +813,7 @@
       btn.setAttribute('aria-label', label);
       btn.setAttribute('title', label);
       btn.setAttribute('aria-pressed', String(dark));
-      if (meta) meta.setAttribute('content', dark ? '#0E0D0C' : '#FAF8F5');
+      if (meta) meta.setAttribute('content', dark ? '#0B1220' : '#FCFDFF');
     }
     btn.addEventListener('click', function () {
       var next = isDark() ? 'light' : 'dark';
