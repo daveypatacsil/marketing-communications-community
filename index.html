@@ -14,12 +14,12 @@
 <meta property="og:title" content="Davey Patacsil — Program Management, Communications &amp; Operations">
 <meta property="og:description" content="I turn scattered work into programs that run.">
 <meta property="og:url" content="https://daveypatacsil.github.io/marketing-communications-community/">
-<meta property="og:image" content="https://daveypatacsil.github.io/marketing-communications-community/images/davey-2.jpeg">
+<meta property="og:image" content="https://daveypatacsil.github.io/marketing-communications-community/images/Davey%20Profile%20Picture.JPG">
 <meta property="og:image:alt" content="Portrait of Davey Patacsil">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Davey Patacsil — Program Management, Communications &amp; Operations">
 <meta name="twitter:description" content="I turn scattered work into programs that run.">
-<meta name="twitter:image" content="https://daveypatacsil.github.io/marketing-communications-community/images/davey-2.jpeg">
+<meta name="twitter:image" content="https://daveypatacsil.github.io/marketing-communications-community/images/Davey%20Profile%20Picture.JPG">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='Georgia,serif'>D</text></svg>">
 
@@ -316,12 +316,21 @@
   .work-card.featured { grid-column: 1 / -1; }
 
   .card-media {
-    position: relative; width: 100%; height: 200px;
+    position: relative; width: 100%; height: 260px;
     overflow: hidden; background: var(--media-bg); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: 12px;
   }
-  .work-card.featured .card-media { height: 260px; }
+  .work-card.featured .card-media { height: 480px; padding: 18px; }
+  /* Once a real image loads, the striped "add a screenshot" plate behind it
+     would still show around a contained image — so hide it. */
+  .card-media.has-image .media-placeholder { display: none; }
+  /* `contain`, not `cover` — cover fills the box by cropping whatever doesn't
+     fit, which is what was zooming into the newsletter and the demo. */
   .card-media img {
-    width: 100%; height: 100%; object-fit: cover; object-position: top center;
+    width: auto; height: auto;
+    max-width: 100%; max-height: 100%;
+    object-fit: contain;
     filter: saturate(0.9) var(--img-filter); transition: filter .3s;
   }
   .work-card:hover .card-media img { filter: saturate(1) var(--img-filter); }
@@ -515,7 +524,7 @@
   <div class="section-header"><span class="section-num">01</span><h2>About</h2></div>
   <div class="about-grid">
     <div class="about-portrait">
-      <img src="images/Davey Profile Picture.JPG" alt="Portrait of Davey Patacsil" width="800" height="1000" loading="lazy" decoding="async">
+      <img src="images/Davey%20Profile%20Picture.JPG" alt="Portrait of Davey Patacsil" width="800" height="1000" loading="lazy" decoding="async">
     </div>
     <div class="about-text">
       <p>Hi, I'm Davey — a program manager and communications strategist who <strong>came up through marketing</strong>.</p>
@@ -554,7 +563,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg>
           <span>Add a newsletter screenshot</span>
         </div>
-        <!-- TODO: screenshot the newsletter, save as images/oss-newsletter.jpg -->
+        <!-- TODO: screenshot the newsletter, save as images/newsletter-intuitoss.png -->
         <img src="images/newsletter-intuitoss.png" alt="An issue of the Intuit Open Source community newsletter" loading="lazy" decoding="async" onerror="this.style.display='none'">
       </div>
       <div class="card-body">
@@ -749,6 +758,19 @@
 </footer>
 
 <script>
+  // ── Swap the placeholder plate out once a real screenshot loads ──
+  (function () {
+    document.querySelectorAll('.card-media').forEach(function (box) {
+      var img = box.querySelector('img');
+      if (!img) return;
+      function ok()   { box.classList.add('has-image'); img.style.display = ''; }
+      function fail() { box.classList.remove('has-image'); img.style.display = 'none'; }
+      if (img.complete) { img.naturalWidth > 0 ? ok() : fail(); }
+      img.addEventListener('load', ok);
+      img.addEventListener('error', fail);
+    });
+  })();
+
   // ── Mobile menu ──
   (function () {
     var btn = document.getElementById('hamBtn');
