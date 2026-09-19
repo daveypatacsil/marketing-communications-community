@@ -317,11 +317,16 @@
   .section-lead { font-size: 16px; color: var(--ink-muted); font-weight: 300; max-width: 62ch; margin-bottom: 48px; margin-top: -32px; }
 
   /* ── ABOUT ── */
-  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+  /* Portrait column fixed at half its old rendered width (~470px -> 235px).
+     The text column is capped so it doesn't sprawl into the freed space. */
+  .about-grid { display: grid; grid-template-columns: 235px minmax(0, 1fr); gap: clamp(32px, 4.5vw, 64px); align-items: start; }
+  .about-text { max-width: 70ch; }
   /* Grid children default to min-width:auto, so the portrait's intrinsic 800px
      was forcing the whole column open on phones. */
   .about-grid > *, .portfolio-grid > *, .writing-item > * { min-width: 0; }
-  .about-portrait { position: relative; }
+  /* z-index:0 makes this a stacking context, so the offset frame below can sit
+     at z-index:-1 (behind the photo) without falling behind the section bg. */
+  .about-portrait { position: relative; z-index: 0; }
   .about-portrait img { width: 100%; height: auto; filter: var(--img-filter); }
   .about-portrait::after {
     content: ''; position: absolute; bottom: -16px; right: -16px;
@@ -498,7 +503,8 @@
     .hero-left { padding: 48px 6vw 40px; }
     .hero-right { height: 340px; }
     .stat-num { font-size: 27px; }
-    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-portrait { max-width: 235px; }
     .about-portrait::after { display: none; }
     .refs-list, .testimonials-list { grid-template-columns: 1fr; gap: 28px; }
     #contact { grid-template-columns: 1fr; gap: 40px; padding: 72px 6vw; }
@@ -569,12 +575,10 @@
       <img src="images/Davey%20Profile%20Picture.JPG" alt="Portrait of Davey Patacsil" width="1432" height="1604" loading="lazy" decoding="async">
     </div>
     <div class="about-text">
-      <p>Hi, I'm Davey — a program manager and communications strategist who <strong>came up through marketing</strong>.</p>
-      <p>I started in digital marketing at BPM Music, running campaigns across paid, email, and social for a subscription platform built for working DJs — audience growth targets, A/B tests, and enough hours in Google Analytics and Meta Ads Manager to know what a real number looks like. At Comic-Con International I built a national membership program from nothing and raised <strong>over $1M in its first year</strong>, on omnichannel campaigns and large-scale events with immovable deadlines.</p>
-      <p>That grounding still shapes how I run programs. I start with the audience instead of the announcement, test the message instead of assuming it, and measure what actually happened. What changed is who's on the other end — engineers, stakeholders, executives — and that the deliverable is usually a system rather than a campaign.</p>
-      <p>Most of my job now is connecting dots: the handoff between two teams, the decision that never got written down, the process everyone works around instead of fixing. I build the systems that close those gaps, then get out of the way.</p>
-      <p>I'm also interested in how far AI can take the parts of the job that don't need a human. I've built agent-powered CRM workflows, automated data hygiene, and dashboards that assemble themselves — which is less about the technology than about what it buys back: time for the judgment calls and the relationships.</p>
-      <p>Outside the work: street photography, travel, drumming, and cooking. Ten years in tech came after a decade around music and fandom, which is probably why the communities I build feel more like scenes than mailing lists.</p>
+      <p>Hi, I'm Davey — a program manager and <strong>marketing &amp; communications strategist</strong>. I've had a very colorful career, which I'm proud of.</p>
+      <p>I've run paid, email, and social for a subscription platform built for working DJs (BPM Music). At Comic-Con International, I built a national membership program from scratch and raised <strong>over $1M in its first year</strong>. I've built a strong foundation for how I run marketing and communications programs: start with the audience, test the message, and measure what actually happened.</p>
+      <p>What's changed is how I deliver. I'm the connecting point between teams, I manage decisions that never got written down, and I build resilient systems that close the gaps. As AI has advanced, I increasingly automate the parts that don't need a human touch: agent-powered workflows, automated data hygiene, and dashboards that assemble themselves.</p>
+      <p>Outside of work, I love street photography, traveling, drumming, and cooking.</p>
       <div class="about-pills">
         <span class="pill">Program Management</span>
         <span class="pill">Campaign Strategy</span>
