@@ -3,23 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+     ONE title, ONE set of social tags. There were two of each —
+     two <title>s, two og:title, two og:description, two og:image,
+     two og:url — which left it to the scraper to guess.
+     Canonical and og:url now point at daveypatacsil.work, the
+     domain the github.io URL redirects to.
+============================================================ -->
 <title>Davey Patacsil — Program Management, Communications &amp; Operations</title>
 <meta name="description" content="Davey Patacsil is a San Diego-based program manager and communications strategist. Ten years building the governance, process, and communications systems that let global teams operate at scale.">
 
-<link rel="canonical" href="https://daveypatacsil.github.io/marketing-communications-community/">
+<link rel="canonical" href="https://daveypatacsil.work/">
 <meta name="author" content="Davey Patacsil">
 <meta name="theme-color" content="#FCFDFF" id="theme-color-meta">
 
 <meta property="og:type" content="profile">
+<meta property="og:site_name" content="Davey Patacsil">
 <meta property="og:title" content="Davey Patacsil — Program Management, Communications &amp; Operations">
-<meta property="og:description" content="I turn scattered work into programs that run.">
-<meta property="og:url" content="https://daveypatacsil.github.io/marketing-communications-community/">
-<meta property="og:image" content="https://daveypatacsil.github.io/marketing-communications-community/images/Davey%20Profile%20Picture.JPG">
-<meta property="og:image:alt" content="Portrait of Davey Patacsil">
+<meta property="og:description" content="I turn scattered work into programs that run. Cross-functional program management and comms operations for global teams.">
+<meta property="og:url" content="https://daveypatacsil.work/">
+<!-- Absolute URL required: a relative og:image is ignored by every scraper. -->
+<meta property="og:image" content="https://daveypatacsil.work/images/header-portfolio.png">
+<meta property="og:image:width" content="2309">
+<meta property="og:image:height" content="949">
+<meta property="og:image:alt" content="Davey Patacsil — portfolio header">
+
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Davey Patacsil — Program Management, Communications &amp; Operations">
-<meta name="twitter:description" content="I turn scattered work into programs that run.">
-<meta name="twitter:image" content="https://daveypatacsil.github.io/marketing-communications-community/images/Davey%20Profile%20Picture.JPG">
+<meta name="twitter:description" content="I turn scattered work into programs that run. Cross-functional program management and comms operations for global teams.">
+<meta name="twitter:image" content="https://daveypatacsil.work/images/header-portfolio.png">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='Georgia,serif'>D</text></svg>">
 
@@ -34,7 +47,7 @@
   "name": "Davey Patacsil",
   "jobTitle": "Staff Program Manager, Digital Communities",
   "worksFor": { "@type": "Organization", "name": "Intuit" },
-  "url": "https://daveypatacsil.github.io/marketing-communications-community/",
+  "url": "https://daveypatacsil.work/",
   "email": "mailto:davey.patacsil@gmail.com",
   "address": { "@type": "PostalAddress", "addressLocality": "San Diego", "addressRegion": "CA", "addressCountry": "US" },
   "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of California, Berkeley" },
@@ -51,6 +64,15 @@
       if (s === 'dark' || s === 'light') document.documentElement.setAttribute('data-theme', s);
     } catch (e) {}
   })();
+</script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C36WXZZS6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C36WXZZS6N');
 </script>
 
 <style>
@@ -142,6 +164,13 @@
 
   img { max-width: 100%; display: block; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* Screen-reader-only text. The diagram's <figcaption> uses it. */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
 
   .skip-link {
     position: absolute; left: -9999px;
@@ -338,8 +367,9 @@
      would still show around a contained image — so hide it. */
   .card-media.has-image .media-placeholder { display: none; }
   /* `contain`, not `cover` — cover fills the box by cropping whatever doesn't
-     fit, which is what was zooming into the newsletter and the demo. */
+     fit, which is what zooms into tall screenshots. */
   .card-media img {
+    position: relative; z-index: 1;
     width: auto; height: auto;
     max-width: 100%; max-height: 100%;
     object-fit: contain;
@@ -354,7 +384,11 @@
   }
   .media-placeholder span { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; }
   .media-placeholder svg { width: 20px; height: 20px; }
-  .card-media img { position: relative; z-index: 1; }
+
+  /* The diagram card holds an <svg>, not an <img>. Without these it renders at
+     its intrinsic 400x250 and gets clipped on any card narrower than that. */
+  .card-media figure { width: 100%; display: flex; align-items: center; justify-content: center; }
+  .card-media figure svg { width: auto; height: auto; max-width: 100%; max-height: 100%; display: block; }
 
   .card-body { padding: 28px 28px 26px; flex: 1; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
   .work-card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
@@ -473,27 +507,6 @@
     .writing-cta { display: none; }
   }
 </style>
-<!-- Primary Meta Tags -->
-<title>Davey Patacsil | Marketing, Communications & Community Strategist</title>
-<meta name="title" content="Davey Patacsil | Marketing, Communications & Community Strategist">
-<meta name="description" content="Portfolio of Davey Patacsil. View my work in digital communications, community building, and marketing strategy.">
-
-<!-- Open Graph / Facebook / LinkedIn -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://daveypatacsil.work/">
-<meta property="og:title" content="Davey Patacsil | Marketing, Communications & Community Strategist">
-<meta property="og:description" content="Portfolio of Davey Patacsil. View my work in digital communications, community building, and marketing strategy.">
-<meta property="og:image" content="images/header-portfolio.png">
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C36WXZZS6N"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-C36WXZZS6N');
-</script>
 </head>
 <body>
 
@@ -505,9 +518,9 @@
   <div class="nav-right">
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#writing">Featured Content</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="Davey-Patacsil-Resume_1.pdf" class="nav-resume">Resume &darr;</a></li>
     </ul>
@@ -553,7 +566,7 @@
   <div class="section-header"><span class="section-num">01</span><h2>About</h2></div>
   <div class="about-grid">
     <div class="about-portrait">
-      <img src="images/Davey%20Profile%20Picture.JPG" alt="Portrait of Davey Patacsil" width="800" height="1000" loading="lazy" decoding="async">
+      <img src="images/Davey%20Profile%20Picture.JPG" alt="Portrait of Davey Patacsil" width="1432" height="1604" loading="lazy" decoding="async">
     </div>
     <div class="about-text">
       <p>Hi, I'm Davey — a program manager and communications strategist who <strong>came up through marketing</strong>.</p>
@@ -578,9 +591,37 @@
   </div>
 </section>
 
-<!-- ── 02 WORK ── -->
-<section id="work">
-  <div class="section-header"><span class="section-num">02</span><h2>Selected Work</h2></div>
+<!-- ── 02 TESTIMONIALS ── -->
+<section id="testimonials">
+  <div class="section-header"><span class="section-num">02</span><h2>Testimonials</h2></div>
+  <p class="section-lead">What people who've managed and worked alongside me say about the work.</p>
+  <div class="refs-list">
+    <div class="ref-card">
+      <p class="ref-quote">You didn't just support the event, you elevated it. We're lucky to have your dedication in building inclusive, vibrant tech communities and showcasing what Intuit Tech is all about.</p>
+      <div class="ref-person">Director of DevRel</div>
+      <div class="ref-title">Intuit</div>
+    </div>
+    <div class="ref-card">
+      <p class="ref-quote">Thank you for quickly coming up with a strategy and driving the newsletter to the first issue. Gathering feedback from so many stakeholders was quite stressful, and you did a great job at making sure everyone felt heard.</p>
+      <div class="ref-person">Manager, Tech PMM &amp; Advocacy</div>
+      <div class="ref-title">Intuit</div>
+    </div>
+    <div class="ref-card">
+      <p class="ref-quote">Your posts, coverage, and real-time updates helped extend the impact of the event far beyond the people physically on-site. I really appreciate all the creativity and effort you put into this.</p>
+      <div class="ref-person">Staff Technical Program Manager</div>
+      <div class="ref-title">Intuit</div>
+    </div>
+    <div class="ref-card">
+      <p class="ref-quote">I appreciate all the hard work, diligence, and commitment to ensure the newsletters have the reach and impact they deserve.</p>
+      <div class="ref-person">AI Foundations Initiative Manager</div>
+      <div class="ref-title">Intuit</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 WORK ── -->
+<section id="work" class="band">
+  <div class="section-header"><span class="section-num">03</span><h2>Selected Work</h2></div>
   <p class="section-lead">Five programs, each with a problem I inherited, a system I built to fix it, and a number attached.</p>
 
   <div class="portfolio-grid">
@@ -592,7 +633,6 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg>
           <span>Add a newsletter screenshot</span>
         </div>
-        <!-- TODO: screenshot the newsletter, save as images/newsletter-intuitoss.png -->
         <img src="images/newsletter-intuitoss.png" alt="An issue of the Intuit Open Source community newsletter" loading="lazy" decoding="async" onerror="this.style.display='none'">
       </div>
       <div class="card-body">
@@ -645,14 +685,14 @@
       </a>
     </article>
 
-   <!-- COMMS OPS -->
+    <!-- COMMS OPS -->
     <article class="work-card">
       <!-- A diagram rather than a screenshot: a dashboard thumbnail at this size
            is unreadable chart-shapes, and a real one would need redacting. This
            shows what actually changed. It inherits the page colours, so it
            themes itself and never needs re-exporting. -->
       <div class="card-media has-image">
-        <figure style="margin:0; width:100%;">
+        <figure style="margin:0;">
           <svg viewBox="0 0 400 250" width="400" height="250" role="img"
                aria-label="Before: raw data passes through manual cleanup into a status deck, and reporting lands about a week behind. Now: the same raw data passes through an automated pipeline into a live dashboard, and reporting lands the same day."
                font-family="DM Sans, system-ui, sans-serif">
@@ -710,7 +750,7 @@
               </marker>
             </defs>
           </svg>
-          <figcaption class="sr-only"></figcaption>
+          <figcaption class="sr-only">The manual assembly step between data and report was removed, moving reporting from weekly to same-day.</figcaption>
         </figure>
       </div>
       <div class="card-body">
@@ -758,9 +798,9 @@
   </div>
 </section>
 
-<!-- ── 03 WRITING ── -->
-<section id="writing" class="band">
-  <div class="section-header"><span class="section-num">03</span><h2>Featured Campaign Deliverables</h2></div>
+<!-- ── 04 FEATURED CONTENT ── -->
+<section id="writing">
+  <div class="section-header"><span class="section-num">04</span><h2>Featured Campaign Deliverables</h2></div>
   <p class="section-lead">Communications and operations roles hire on the same evidence: what you write, and what you leave behind so the next person can run it without you.</p>
 
   <div class="writing-list">
@@ -779,34 +819,6 @@
       <span><span class="writing-title">Intuit Open Source on LinkedIn</span><p class="writing-desc">The showcase page I run — the three-pillar strategy in practice, published on a monthly cadence.</p></span>
       <span class="writing-cta">Visit &rarr;</span>
     </a>
-  </div>
-</section>
-
-<!-- ── 04 TESTIMONIALS ── -->
-<section id="testimonials">
-  <div class="section-header"><span class="section-num">04</span><h2>Testimonials</h2></div>
-  <p class="section-lead">What people who've managed and worked alongside me say about the work.</p>
-  <div class="refs-list">
-    <div class="ref-card">
-      <p class="ref-quote">You didn’t just support the event, you elevated it. We’re lucky to have your dedication in building inclusive, vibrant tech communities and showcasing what Intuit Tech is all about.</p>
-      <div class="ref-person">Director of DevRel</div>
-      <div class="ref-title">Intuit</div>
-    </div>
-    <div class="ref-card">
-      <p class="ref-quote">Thank you for quickly coming up with a strategy and driving the newsletter to the first issue. Gathering feedback from so many stakeholders was quite stressful, and you did a great job at making sure everyone felt heard.</p>
-      <div class="ref-person">Direct Manager, Tech PMM & Advocacy</div>
-      <div class="ref-title">Intuit</div>
-    </div>
-    <div class="ref-card">
-      <p class="ref-quote">Your posts, coverage, and real-time updates helped extend the impact of the event far beyond the people physically on-site. I really appreciate all the creativity and effort you put into this.</p>
-      <div class="ref-person">Staff Technical Program Manager</div>
-      <div class="ref-title">Intuit</div>
-    </div>
-    <div class="ref-card">
-      <p class="ref-quote">I appreciate all the hard work, diligence, and commitment to ensure the newsletters have the reach and impact they deserve.</p>
-      <div class="ref-person">AI Foundations Initative Managerr</div>
-      <div class="ref-title">Intuit</div>
-    </div>
   </div>
 </section>
 
